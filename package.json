@@ -19,9 +19,10 @@
   },
   "homepage": "https://github.com/KitsenkoDmitry/143363-buy-and-sell-3#readme",
   "devDependencies": {
-    "chalk": "4.1.1",
     "eslint": "7.27.0",
     "eslint-config-htmlacademy": "0.6.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "chalk": "4.1.1"
+  }
 }

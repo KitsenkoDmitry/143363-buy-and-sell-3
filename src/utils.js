@@ -7,10 +7,10 @@ module.exports.getRandomInt = (min, max) => {
 };
 
 module.exports.shuffle = (someArray) => {
-  for (let i = someArray.length - 1; i > 0; i--) {
+  const array = someArray.slice();
+  for (let i = array.length - 1; i > 0; i--) {
     const randomPosition = Math.floor(Math.random() * i);
-    [someArray[i], someArray[randomPosition]] = [someArray[randomPosition], someArray[i]];
+    [array[i], array[randomPosition]] = [array[randomPosition], array[i]];
   }
-
-  return someArray;
+  return array;
 };
