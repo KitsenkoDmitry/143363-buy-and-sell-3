@@ -1,7 +1,8 @@
 "use strict";
 
-const fs = require(`fs`);
+const fs = require(`fs`).promises;
 const chalk = require(`chalk`);
+
 const {DEFAULT_COUNT, CATEGORIES, SENTENCES, TITLES, OfferType, SumRestrict, PictureRestrict, PICTURE_NAME, FILE_NAME, MAX_DESCRIPTION_LENGTH, ExitCodes} = require(`../../constants`);
 const {
   getRandomInt,
@@ -28,17 +29,18 @@ const generateOffers = (count) => (
 
 module.exports = {
   name: `--generate`,
-  run: (args) => {
+  run: async (args) => {
     const [count] = args;
     const offerCount = parseInt(count, 10) || DEFAULT_COUNT;
     const content = JSON.stringify(generateOffers(offerCount));
 
-    fs.writeFile(FILE_NAME, content, (err) => {
-      if (err) {
-        console.error(chalk.red(`Can't write data to file: ${err}`));
-        process.exit(ExitCodes.ERROR);
-      }
+    try {
+      await fs.writeFile(FILE_NAME, content);
       console.info(chalk.green(`File ${FILE_NAME} was successfully created`));
-    });
+
+    } catch (e) {
+      console.error(chalk.red(`Can't write data to file: ${e}`));
+      process.exit(ExitCodes.ERROR);
+    }
   },
 };
