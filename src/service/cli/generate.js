@@ -6,6 +6,7 @@ const {DEFAULT_COUNT, CATEGORIES, SENTENCES, TITLES, OfferType, SumRestrict, Pic
 const {
   getRandomInt,
   shuffle,
+  getRandomItem
 } = require(`../../utils`);
 
 const getPictureFileName = (number) => {
@@ -13,7 +14,6 @@ const getPictureFileName = (number) => {
   return PICTURE_NAME.replace(/XX/, replaceBy);
 };
 
-const getRandomItem = (array) => array[getRandomInt(0, array.length - 1)];
 
 const generateOffers = (count) => (
   Array(count).fill({}).map(() => ({
