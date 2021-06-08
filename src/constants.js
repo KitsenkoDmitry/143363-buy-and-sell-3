@@ -4,7 +4,6 @@ const USER_ARGV_INDEX = 2;
 const DEFAULT_USER_COMAND = `--help`;
 const DEFAULT_COUNT = 1;
 const MAX_DESCRIPTION_LENGTH = 5;
-const DATA_DIR = `data`;
 
 const FILE_NAME = `mocks.json`;
 
@@ -35,7 +34,6 @@ module.exports = {
   DEFAULT_COUNT,
   MAX_DESCRIPTION_LENGTH,
   FILE_NAME,
-  DATA_DIR,
   OfferType,
   SumRestrict,
   PictureRestrict,

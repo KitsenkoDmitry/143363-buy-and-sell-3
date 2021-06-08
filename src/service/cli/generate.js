@@ -3,14 +3,19 @@
 const fs = require(`fs`).promises;
 const chalk = require(`chalk`);
 
-const {DEFAULT_COUNT, OfferType, DATA_DIR, SumRestrict, PictureRestrict, PICTURE_NAME, FILE_NAME, MAX_DESCRIPTION_LENGTH, ExitCodes} = require(`../../constants`);
+const {DEFAULT_COUNT, OfferType, SumRestrict, PictureRestrict, PICTURE_NAME, FILE_NAME, MAX_DESCRIPTION_LENGTH, ExitCodes} = require(`../../constants`);
+
+const CATEGORIES_FILE = `./data/categories.txt`;
+const SENTENCES_FILE = `./data/sentences.txt`;
+const TITLES_FILE = `./data/titles.txt`;
+
 const {
   getRandomInt,
   shuffle,
   getRandomItem
 } = require(`../../utils`);
 
-const readFromFile = async (fileName) => {
+const readContent = async (fileName) => {
   try {
     const data = await fs.readFile(fileName, {encoding: `utf-8`});
     return data.trim().split(`\n`);
@@ -25,28 +30,25 @@ const getPictureFileName = (number) => {
   return PICTURE_NAME.replace(/XX/, replaceBy);
 };
 
-const generateOffers = async (count) => {
-  const categories = await readFromFile(`${DATA_DIR}/categories.txt`);
-  const sentences = await readFromFile(`${DATA_DIR}/sentences.txt`);
-  const titles = await readFromFile(`${DATA_DIR}/titles.txt`);
-
-  return Array(count).fill({}).map(() => ({
-    category: shuffle(categories).slice(0, getRandomInt(1, categories.length)),
-    description: shuffle(sentences).slice(0, getRandomInt(1, MAX_DESCRIPTION_LENGTH)).join(` `),
-    picture: getPictureFileName(getRandomInt(PictureRestrict.MIN, PictureRestrict.MAX)),
-    title: getRandomItem(titles),
-    type: getRandomItem(Object.values(OfferType)),
-    sum: getRandomInt(SumRestrict.MIN, SumRestrict.MAX),
-  }));
-};
+const generateOffers = (count, categories, sentences, titles) => (Array(count).fill({}).map(() => ({
+  category: shuffle(categories).slice(0, getRandomInt(1, categories.length)),
+  description: shuffle(sentences).slice(0, getRandomInt(1, MAX_DESCRIPTION_LENGTH)).join(` `),
+  picture: getPictureFileName(getRandomInt(PictureRestrict.MIN, PictureRestrict.MAX)),
+  title: getRandomItem(titles),
+  type: getRandomItem(Object.values(OfferType)),
+  sum: getRandomInt(SumRestrict.MIN, SumRestrict.MAX),
+})));
 
 module.exports = {
   name: `--generate`,
   run: async (args) => {
     const [count] = args;
     const offerCount = parseInt(count, 10) || DEFAULT_COUNT;
-    const generatedOffers = await generateOffers(offerCount);
-    const content = JSON.stringify(generatedOffers);
+    const categories = await readContent(CATEGORIES_FILE);
+    const sentences = await readContent(SENTENCES_FILE);
+    const titles = await readContent(TITLES_FILE);
+
+    const content = JSON.stringify(generateOffers(offerCount, categories, sentences, titles));
 
     try {
       await fs.writeFile(FILE_NAME, content);
