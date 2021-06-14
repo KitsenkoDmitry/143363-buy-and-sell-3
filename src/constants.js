@@ -5,6 +5,7 @@ const DEFAULT_USER_COMAND = `--help`;
 const DEFAULT_COUNT = 1;
 const MAX_DESCRIPTION_LENGTH = 5;
 const DEFAULT_PORT = 3000;
+const PUBLIC_DIR = `public`;
 
 const FILE_NAME = `mocks.json`;
 
@@ -39,6 +40,7 @@ const HttpCode = {
 
 module.exports = {
   USER_ARGV_INDEX,
+  PUBLIC_DIR,
   DEFAULT_USER_COMAND,
   DEFAULT_COUNT,
   DEFAULT_PORT,
