@@ -2,19 +2,9 @@
 
 const chalk = require(`chalk`);
 const express = require(`express`);
-const fs = require(`fs`).promises;
-const {DEFAULT_PORT, FILE_NAME} = require(`../../constants`);
+const {DEFAULT_PORT, API_PREFIX} = require(`../../constants`);
+const apiRouter = require(`../api`);
 
-const offersRouter = new express.Router();
-offersRouter.get(`/`, async (req, res) => {
-  try {
-    const fileContent = await fs.readFile(FILE_NAME);
-    const mocks = JSON.parse(fileContent);
-    res.json(mocks);
-  } catch (err) {
-    res.json([]);
-  }
-});
 
 module.exports = {
   name: `--server`,
@@ -24,7 +14,7 @@ module.exports = {
 
     const app = express();
     app.use(express.json());
-    app.use(`/offers`, offersRouter);
+    app.use(API_PREFIX, apiRouter);
 
     app.listen(port, () => {
       console.info(chalk.green(`Server listening on port ${port}: http://localhost:${port}`));

@@ -1,0 +1,50 @@
+@host = http://localhost:3000
+@offerid = -8TrR
+
+###
+GET {{host}}/api/offers
+###
+GET {{host}}/api/categories
+###
+GET {{host}}/api/offers/{{offerid}}
+###
+POST {{host}}/api/offers
+Content-Type: application/json
+
+{
+  "category": "Авто",
+  "description": "Новенький шевроле круз.",
+  "picture": "item15.jpg",
+  "title": "Продам книги Шевроле",
+  "type": "sale",
+  "sum": "1"
+}
+###
+PUT {{host}}/api/offers/{{offerid}}
+Content-Type: application/json
+
+{
+  "category": "Авто",
+  "description": "Новенький шевроле круз.",
+  "picture": "item15.jpg",
+  "title": "Продам книги Шевроле",
+  "type": "sale",
+  "sum": "1"
+}
+###
+DELETE {{host}}/api/offers/{{offerid}}
+###
+
+GET {{host}}/api/offers/{{offerid}}/comments
+###
+@commentId = mmcI_
+DELETE {{host}}/api/offers/{{offerid}}/comments/{{commentId}}
+###
+POST {{host}}/api/offers/{{offerid}}/comments
+Content-Type: application/json
+
+{"text": "Произвольный коммент"}
+###
+@search = кинг
+GET {{host}}/api/search?query={{search}}
+###

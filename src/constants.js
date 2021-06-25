@@ -6,6 +6,9 @@ const DEFAULT_COUNT = 1;
 const MAX_DESCRIPTION_LENGTH = 5;
 const DEFAULT_PORT = 3000;
 const PUBLIC_DIR = `public`;
+const MAX_ID_LENGTH = 5;
+const MAX_COMMENTS = 3;
+const API_PREFIX = `/api`;
 
 const FILE_NAME = `mocks.json`;
 
@@ -32,19 +35,24 @@ const ExitCodes = {
 
 const HttpCode = {
   OK: 200,
+  CREATED: 201,
   NOT_FOUND: 404,
   INTERNAL_SERVER_ERROR: 500,
   FORBIDDEN: 403,
   UNAUTHORIZED: 401,
+  BAD_REQUEST: 400,
 };
 
 module.exports = {
+  API_PREFIX,
   USER_ARGV_INDEX,
   PUBLIC_DIR,
   DEFAULT_USER_COMAND,
   DEFAULT_COUNT,
   DEFAULT_PORT,
   MAX_DESCRIPTION_LENGTH,
+  MAX_ID_LENGTH,
+  MAX_COMMENTS,
   FILE_NAME,
   OfferType,
   SumRestrict,
