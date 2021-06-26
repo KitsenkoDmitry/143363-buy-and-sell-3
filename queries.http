@@ -25,9 +25,9 @@ Content-Type: application/json
 
 {
   "category": "Авто",
-  "description": "Новенький шевроле круз.",
+  "description": "Новенькая нива",
   "picture": "item15.jpg",
-  "title": "Продам книги Шевроле",
+  "title": "Продам Ниву",
   "type": "sale",
   "sum": "1"
 }

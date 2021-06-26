@@ -35,7 +35,7 @@ class OfferService {
 
   update(id, offer) {
     const oldOffer = this.findOne(id);
-    return {...oldOffer, ...offer};
+    return Object.assign(oldOffer, offer);
   }
 }
 
