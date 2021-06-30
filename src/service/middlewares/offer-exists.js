@@ -6,9 +6,10 @@ module.exports = (offerService) => (req, res, next) => {
 
   const offer = offerService.findOne(offerId);
   if (!offer) {
-    res.status(HttpCode.NOT_FOUND).json(`Offer ${offerId} not found`);
+    return res.status(HttpCode.NOT_FOUND).json(`Offer ${offerId} not found`);
   }
   res.locals.offer = offer;
 
   next();
+  return null;
 };

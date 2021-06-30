@@ -13,13 +13,13 @@ const {
   SearchService
 } = require(`../data-service`);
 
-const app = new Router();
-(async () => {
+module.exports = async () => {
+  const app = new Router();
   const data = await getMockData();
 
   category(app, new CategoryService(data));
   offer(app, new OfferService(data), new CommentService());
   search(app, new SearchService(data));
-})();
 
-module.exports = app;
+  return app;
+};
