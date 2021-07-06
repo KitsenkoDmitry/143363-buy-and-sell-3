@@ -52,7 +52,7 @@ module.exports = (app, offerService, commentService) => {
     return res.status(HttpCode.OK).json(comments);
   });
 
-  route.post(`/:offerId/comments`, [commentValidator, offerExists(offerService)], (req, res) => {
+  route.post(`/:offerId/comments`, [offerExists(offerService), commentValidator], (req, res) => {
     const {offer} = res.locals;
     const comment = commentService.create(offer, req.body);
     return res.status(HttpCode.OK).json(comment);

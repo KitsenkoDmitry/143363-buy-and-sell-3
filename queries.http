@@ -45,6 +45,6 @@ Content-Type: application/json
 
 {"text": "Произвольный коммент"}
 ###
-@search = кинг
+@search = шерсть
 GET {{host}}/api/search?query={{search}}
 ###
