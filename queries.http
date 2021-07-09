@@ -48,3 +48,4 @@ Content-Type: application/json
 @search = шерсть
 GET {{host}}/api/search?query={{search}}
 ###
+GET {{host}}/api/not-existing-url
