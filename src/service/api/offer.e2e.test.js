@@ -19,11 +19,10 @@ const createAPI = () => {
 };
 
 describe(`API returns list of offers`, () => {
-  const api = createAPI();
-
   let response;
 
   beforeAll(async () => {
+    const api = createAPI();
     response = await request(api).get(`/offers`);
   });
 
@@ -35,11 +34,10 @@ describe(`API returns list of offers`, () => {
 });
 
 describe(`API returns an offer with a given id`, () => {
-  const api = createAPI();
-
   let response;
 
   beforeAll(async () => {
+    const api = createAPI();
     response = await request(api).get(`/offers/NwsA4`);
   });
 
@@ -65,10 +63,11 @@ describe(`API creates an offer if data is valid`, () => {
     sum: 345,
   };
 
-  const api = createAPI();
+  let api;
   let response;
 
   beforeAll(async () => {
+    api = createAPI();
     response = await request(api).post(`/offers/`).send(newOffer);
   });
 
@@ -109,7 +108,7 @@ describe(`API refuses to create an offer if data is invalid`, () => {
 });
 
 describe(`API changes existent offer`, () => {
-  const api = createAPI();
+
   const offerUpdates = {
     category: `Книги`,
     description: `Любимая книга детства. Идеальна для обычных людей`,
@@ -122,6 +121,7 @@ describe(`API changes existent offer`, () => {
   let response;
 
   beforeAll(async () => {
+    const api = createAPI();
     response = await request(api).put(`/offers/NwsA4`).send(offerUpdates);
   });
 
@@ -163,10 +163,11 @@ test(`API returns status code 400 when trying to change an offer with invalid da
 });
 
 describe(`API correctly deletes an offer`, () => {
-  const api = createAPI();
   let response;
+  let api;
 
   beforeAll(async () => {
+    api = createAPI();
     response = await request(api).delete(`/offers/NwsA4`);
   });
 

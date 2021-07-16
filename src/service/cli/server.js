@@ -37,17 +37,10 @@ module.exports = {
       logger.error(`An error occured: ${err.message}`);
     });
 
-
-    try {
-      app.listen(port, (e) => {
-        if (e) {
-          return logger.error(`An error occurred on server creation: ${e.message}`);
-        }
-        return logger.info(`Server listening on port ${port}: http://localhost:${port}`);
-      });
-    } catch (e) {
-      logger.error(`An error occurred: ${e.message}`);
-      process.exit(1);
-    }
+    app.listen(port, () =>{
+      logger.info(`Server listening on port ${port}: http://localhost:${port}`);
+    }).on(`error`, (e) => {
+      logger.error(`An error occurred on server creation: ${e.message}`);
+    });
   }
 };

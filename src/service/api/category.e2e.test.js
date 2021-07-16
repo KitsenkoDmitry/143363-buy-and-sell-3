@@ -7,15 +7,14 @@ const {HttpCode} = require(`../../constants`);
 
 const mock = [{"id": `KsCWx`, "category": [`Игры`, `Животные`, `Книги`, `Еда`, `Авто`], "description": `Почти что даром!`, "picture": `item15.jpg`, "title": `Продам автомобиль`, "type": `offer`, "sum": 39617, "comments": [{"id": `1WBOv`, "text": `Оплата наличными или перевод на карту? Вы что?! В магазине дешевле.`}, {"id": `hr7m2`, "text": `Неплохо, но дорого`}, {"id": `Wd71w`, "text": `Оплата наличными или перевод на карту?`}]}];
 
-const app = express();
-app.use(express.json());
-category(app, new CategoryService(mock));
-
 
 describe(`category request returns category list`, () => {
   let response;
 
   beforeAll(async () => {
+    const app = express();
+    app.use(express.json());
+    category(app, new CategoryService(mock));
     response = await request(app).get(`/categories`);
   });
 
