@@ -6,6 +6,8 @@ const DEFAULT_COUNT = 1;
 const MAX_DESCRIPTION_LENGTH = 5;
 const DEFAULT_PORT = 3000;
 const PUBLIC_DIR = `public`;
+const UPLOAD_DIR = `upload`;
+const TIMEOUT = 1000;
 const MAX_ID_LENGTH = 5;
 const MAX_COMMENTS = 3;
 const API_PREFIX = `/api`;
@@ -52,6 +54,8 @@ module.exports = {
   API_PREFIX,
   USER_ARGV_INDEX,
   PUBLIC_DIR,
+  UPLOAD_DIR,
+  TIMEOUT,
   DEFAULT_USER_COMAND,
   DEFAULT_COUNT,
   DEFAULT_PORT,

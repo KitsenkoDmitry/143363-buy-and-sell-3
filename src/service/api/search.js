@@ -9,11 +9,11 @@ module.exports = (app, service) => {
   app.use(`/search`, route);
 
   route.get(`/`, (req, res) =>{
-    const {query} = req.query;
-    if (!query) {
+    const {search} = req.query;
+    if (!search) {
       return res.status(HttpCode.BAD_REQUEST).json([]);
     }
-    const categories = service.findAll(query);
+    const categories = service.findAll(search);
     if (categories.length === 0) {
       return res.status(HttpCode.NOT_FOUND).json([]);
     }

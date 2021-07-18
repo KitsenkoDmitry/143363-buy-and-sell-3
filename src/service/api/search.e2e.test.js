@@ -20,7 +20,7 @@ describe(`API returns offer based on search query`, () => {
 
   beforeAll(async () => {
     const api = createAPI();
-    response = await request(api).get(`/search`).query({query: `Продам отличную подборку`});
+    response = await request(api).get(`/search`).query({search: `Продам отличную подборку`});
   });
 
   test(`Status code 200`, () => expect(response.statusCode).toBe(HttpCode.OK));
@@ -30,7 +30,7 @@ describe(`API returns offer based on search query`, () => {
 
 test(`API returns 404 code if nothing is found`, () => {
   const api = createAPI();
-  return request(api).get(`/search`).query({query: `Продам почки`}).expect(HttpCode.NOT_FOUND);
+  return request(api).get(`/search`).query({search: `Продам почки`}).expect(HttpCode.NOT_FOUND);
 });
 
 test(`API returns 400 when query string is absent`, () => {

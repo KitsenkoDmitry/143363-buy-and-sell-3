@@ -3,13 +3,14 @@
 const express = require(`express`);
 const path = require(`path`);
 const {green} = require(`chalk`);
-const {PUBLIC_DIR} = require(`./../constants`);
+const {PUBLIC_DIR, UPLOAD_DIR} = require(`./../constants`);
 const mainRouter = require(`./routes/main`);
 const myRouter = require(`./routes/my`);
 const offersRouter = require(`./routes/offers`);
 
 const app = express();
 app.use(express.static(path.resolve(__dirname, PUBLIC_DIR)));
+app.use(express.static(path.resolve(__dirname, UPLOAD_DIR)));
 app.set(`views`, path.resolve(__dirname, `./templates`));
 app.set(`view engine`, `pug`);
 
